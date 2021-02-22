@@ -1,0 +1,30 @@
+<div class="bg-dark border-right p-3" id="sidebar">
+  <h3 class="text-light">Gifs app</h3>
+  <hr class="text-white" />
+  <ng-container
+    *ngIf="((arrString$ | async) || []).length > 0; else localStorag"
+  >
+    <div class="list-group list-reset">
+      <a
+        *ngFor="let hist of arrString$ | async"
+        (click)="buscar(hist)"
+        href="#"
+        class="list-group-item list-group-item-action"
+      >
+        {{ hist | titlecase }}
+      </a>
+    </div>
+  </ng-container>
+  <ng-template #localStorag>
+    <div class="list-group list-reset">
+      <a
+        *ngFor="let hist of historial"
+        href="#"
+        class="list-group-item list-group-item-action"
+        (click)="buscar(hist)"
+      >
+        {{ hist | titlecase }}
+      </a>
+    </div>
+  </ng-template>
+</div>
